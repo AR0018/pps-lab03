@@ -1,6 +1,6 @@
 package it.unibo.pps.u03
 
-import it.unibo.pps.u03.Person.Person.Teacher
+import it.unibo.pps.u03.Person.Person.{Student, Teacher}
 
 object Person:
   import u03.Sequences.*
@@ -19,7 +19,15 @@ object Person:
     case Person.Student (_ , _) => true
     case _ => false
 
-  def extractCourses (s: Sequence[Person]): Sequence[String] =
-    map(filter(s)(x => !isStudent(x)))(p => p match
-      case Person.Teacher(n, c) => c
+// Initial version with filter and map
+//  def extractCourses (s: Sequence[Person]): Sequence[String] =
+//    map(filter(s)(x => !isStudent(x)))(p => p match
+//      case Person.Teacher(n, c) => c
+//    )
+
+  // More concise version with flatMap
+  def extractCourses(s: Sequence[Person]): Sequence[String] =
+    flatMap(s)(el => el match
+      case Teacher(_, c) => Cons(c, Nil())
+      case Student(_, _) => Nil()
     )

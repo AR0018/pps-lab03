@@ -8,7 +8,7 @@ import u03.Optionals.Optional.{Empty, Just}
 class PersonSequencesTest:
   import u03.Sequences.*
   import Sequence.*
-  
+
   val people = Cons(
     Person.Student("Mario", 2023),
     Cons(
