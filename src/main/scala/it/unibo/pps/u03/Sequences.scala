@@ -158,6 +158,15 @@ object Sequences: // Essentially, generic linkedlists
      */
     def partition[A](s: Sequence[A])(pred: A => Boolean): (Sequence[A], Sequence[A]) = ???
 
+    def foldLeft[A, B](s: Sequence[A])(default: B)(f: (B, A) => B): B =
+      @tailrec
+      def _foldLeft(s:Sequence[A], res: B): B = s match
+        case Cons(h, t) => _foldLeft(t, f(res, h))
+        case _ => res
+      _foldLeft(s, default)
+
+    // TODO: try to implement foldRight
+
 @main def trySequences =
   import Sequences.* 
   val l = Sequence.Cons(10, Sequence.Cons(20, Sequence.Cons(30, Sequence.Nil())))
