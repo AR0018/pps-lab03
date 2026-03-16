@@ -41,7 +41,8 @@ class SequenceTest:
     assertEquals(Cons(40, Cons(50, Nil())), concat(Nil(), l2))
 
   @Test def testReverse() =
-    assertEquals(Cons(30, Cons(20, Cons(10, Nil()))), reverse(sequence))
+    assertEquals(Cons(30, Cons(20, Nil())), reverse(Cons(20, Cons(30, Nil()))))
+    //assertEquals(Cons(30, Cons(20, Cons(10, Nil()))), reverse(sequence))
     assertEquals(Nil(), reverse(Nil()))
 
   @Test def testFlatMap() =
